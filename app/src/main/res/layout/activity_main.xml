@@ -18,12 +18,11 @@
 
     <Spinner
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:id="@+id/spinner"
+            android:background="#ffaaff"
             android:layout_below="@+id/textView"
             android:layout_centerHorizontal="true"
-            android:layout_alignParentTop="true"
-            android:spinnerMode="dialog"
-            android:background="#FF00FF"/>
+            android:layout_alignParentTop="true"/>
 
 </RelativeLayout>
