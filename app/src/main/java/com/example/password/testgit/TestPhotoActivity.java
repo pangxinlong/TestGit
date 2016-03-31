@@ -23,6 +23,8 @@ public class TestPhotoActivity extends Activity implements View.OnClickListener 
 
     public static final String IMAGE_SAVE_PATH = "/test";
 
+    
+
     private static final int REQUEST_CODE_CAMERA = 3003;
 
     private static final int REQUEST_CODE_LOCAL = 3001;
