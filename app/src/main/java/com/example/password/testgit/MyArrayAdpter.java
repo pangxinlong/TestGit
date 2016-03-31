@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.List;
@@ -15,12 +16,25 @@ import java.util.List;
  */
 public class MyArrayAdpter extends BaseAdapter {
 
+    int currentSelection = 0;
+
+
     Context mContext;
     List<String> mList;
 
     public MyArrayAdpter(Context context,List list){
         mContext=context;
         mList=list;
+    }
+
+    public int getCurrentSelection() {
+        return this.currentSelection;
+    }
+
+    public void setSelections(int position) {
+        currentSelection = position;
+        notifyDataSetChanged();
+
     }
 
     @Override
@@ -49,19 +63,28 @@ public class MyArrayAdpter extends BaseAdapter {
 //            }
             viewHolder=new ViewHolder();
             viewHolder.textView=(TextView)convertView.findViewById(R.id.textView);
+            viewHolder.rootView=convertView.findViewById(R.id.rootView);
+
             convertView.setTag(viewHolder);
         }
         viewHolder=(ViewHolder)convertView.getTag();
         viewHolder.bindData(position);
+        if(currentSelection==position){
+            viewHolder.rootView.setBackgroundResource(R.color.red);
+        }else {
+            viewHolder.rootView.setBackgroundResource(R.drawable.listitem_selector);
+        }
 
         return convertView;
     }
 
     public class ViewHolder{
 
-       TextView textView;
+        View rootView;
+
+        TextView textView;
         public void bindData(int position){
-//            textView.setText(mList.get(position));
+
         }
     }
 }

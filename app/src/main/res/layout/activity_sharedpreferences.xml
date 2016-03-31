@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:custom="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <EditText
+            android:id="@+id/et_content"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="输入内容"/>
+
+    <Button
+            android:id="@+id/btn_save"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="save"/>
+
+    <TextView
+            android:id="@+id/tv_show"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="50dp"/>
+
+    <Button
+            android:id="@+id/btn_show"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="show"/>
+
+    <com.example.password.view.MyCustomView
+            custom:text_color="#ff00ff"
+            custom:text_size="16sp"
+            custom:content="测试"
+            android:id="@+id/tv_limit_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:digits="1234"/>
+</LinearLayout>

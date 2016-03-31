@@ -1,14 +1,21 @@
 package com.example.password.testgit;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
@@ -19,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements AdapterView.OnItemClickListener {
 
     SpinnerAdapter mSpinnerAdapter;
     List<String> mArrayList;
@@ -27,19 +34,33 @@ public class MainActivity extends Activity {
     Spinner spinner;
     PopupWindow mPopupWindow;
     ListView mListView;
+        BaseAdapter b;
 
+    MyArrayAdpter myArrayAdpter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
          spinner=(Spinner)findViewById(R.id.spinner);
-        mArrayList=new ArrayList<String>();
+        mListView=(ListView)findViewById(R.id.mListView);
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        mArrayList=new ArrayList<>();
         for(int i=0;i<10;i++){
             mArrayList.add(i+"");
         }
+
+
+
+
+
+
+
+         myArrayAdpter=new MyArrayAdpter(this,mArrayList);
+
 //        spinner.setOnClickListener(this);
 //        mListView = new ListView(getApplicationContext());
-//        mListView.setAdapter(new MyArrayAdpter(this,mArrayList));
+        mListView.setAdapter(myArrayAdpter);
 //        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -58,20 +79,38 @@ public class MainActivity extends Activity {
 //        arrayAdapter.setData(this,mArrayList);
 //        spinner.setAdapter(arrayAdapter);
 
-
-        MySpinnerAdapter mySpinnerAdapter=new MySpinnerAdapter(this,mArrayList);
-        spinner.setAdapter(mySpinnerAdapter);
+//        mArrayList=null;
+//        if(mArrayList!=null){
+//            MySpinnerAdapter mySpinnerAdapter=new MySpinnerAdapter(this,mArrayList);
+//            spinner.setAdapter(mySpinnerAdapter);
+//        }
+        mListView.setOnItemClickListener(this);
 
     }
 
     @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if(myArrayAdpter.getCurrentSelection() != position){
+            myArrayAdpter.setSelections(position);
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        super.onPrepareOptionsMenu(menu);
+        menu.clear();
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_mymenu, menu);
         return true;
     }
 
-
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+            ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_mymenu, menu);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -87,6 +126,8 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
 //    @Override
 //    public void onClick(View v) {
@@ -112,5 +153,35 @@ public class MainActivity extends Activity {
 //        }
 //        return true;
 //    }
+
+    class MyAdatper extends BaseAdapter{
+
+        @Override
+        public int getCount() {
+            return 0;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            return null;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        Log.e("======dpxl===",event.getX()+"");
+        return super.onTouchEvent(event);
+    }
+
 
 }

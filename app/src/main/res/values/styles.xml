@@ -1,8 +1,20 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="@style/BaseTheme">
         <!-- Customize your theme here. -->
+
+        <!--<item name="android:windowTranslucentNavigation">true</item>-->
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+    <!--Theme.AppCompat.Light.DarkActionBar-->
+
+    <style name="MyAppTheme" parent="@style/ThemeOverlay.AppCompat.Light">
+        <!--<item name="android:windowActionBar">true</item>-->
     </style>
 
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--<item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+    </style>
 </resources>
